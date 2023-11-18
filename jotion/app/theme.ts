@@ -15,18 +15,32 @@ const slate = {
   950: "#020617",
 };
 
+const dark = {
+  50: "#C1C2C5",
+  100: "#A6A7AB",
+  200: "#909296",
+  300: "#5C5F66",
+  400: "#373A40",
+  500: "#2C2E33",
+  600: "#25262B",
+  700: "#1A1B1E",
+  800: "#141517",
+  900: "#101113",
+  950: "#070708",
+};
+
 const gray = {
-  50: "#f9fafb",
-  100: "#f3f4f6",
-  200: "#e5e7eb",
-  300: "#d1d5db",
-  400: "#9ca3af",
-  500: "#6b7280",
-  600: "#4b5563",
-  700: "#374151",
-  800: "#1f2937",
-  900: "#111827",
-  950: "#030712",
+  50: "#f8f9fa",
+  100: "#f1f3f5",
+  200: "#e9ecef",
+  300: "#dee2e6",
+  400: "#ced4da",
+  500: "#adb5bd",
+  600: "#868e96",
+  700: "#495057",
+  800: "#343a40",
+  900: "#212529",
+  950: "#070708",
 };
 
 const zinc = {
@@ -59,5 +73,13 @@ const neutral = {
 
 export default extendTheme({
   ...proTheme,
-  colors: { ...baseTheme.colors, slate, gray, zinc, neutral, brand: baseTheme.colors.blue },
+  colors: {
+    ...baseTheme.colors,
+    slate,
+    gray,
+    dark,
+    zinc,
+    neutral,
+    brand: baseTheme.colors.blue,
+  },
 });

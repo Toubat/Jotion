@@ -1,9 +1,12 @@
 "use client";
 import { Image as ChakraNextImage } from "@chakra-ui/next-js";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import NextImage from "next/image";
 
 const Heroes = () => {
+  const documentImage = useColorModeValue("/documents.png", "/documents-dark.png");
+  const readingImage = useColorModeValue("/reading.png", "/reading-dark.png");
+
   return (
     <Flex flexDir="column" align="center" justify="center" maxW="5xl">
       <Flex align="center">
@@ -23,7 +26,7 @@ const Heroes = () => {
           <ChakraNextImage
             className="object-contain"
             as={NextImage}
-            src="/documents.png"
+            src={documentImage}
             fill
             alt="Documents"
           />
@@ -40,7 +43,7 @@ const Heroes = () => {
           <ChakraNextImage
             className="object-contain"
             as={NextImage}
-            src="/reading.png"
+            src={readingImage}
             fill
             alt="Reading"
           />

@@ -1,14 +1,12 @@
 "use client";
 import { Header } from "./_components/heading";
-import { Box, Flex, useColorMode } from "@chakra-ui/react";
+import { Box, Flex, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import Heroes from "./_components/heroes";
 import Footer from "./_components/footer";
 
 const MarketingPage = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   return (
-    <Flex minH="full" flexDir="column">
+    <Flex minH="full" flexDir="column" bg="bg.surface">
       <Flex
         flexDir="column"
         align="center"
@@ -18,6 +16,7 @@ const MarketingPage = () => {
         flex={1}
         px={6}
         pb={10}
+        pt={20}
       >
         <Header />
         <Heroes />
