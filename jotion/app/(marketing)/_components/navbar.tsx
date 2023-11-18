@@ -1,6 +1,8 @@
 "use client";
 
+import { useConvexAuth } from "convex/react";
 import { useScrollTop } from "@/hooks/use-scroll-top";
+import { SignInButton } from "@clerk/clerk-react";
 import {
   Button,
   Flex,
@@ -14,8 +16,11 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import Logo from "./logo";
 
 export const Navbar = () => {
+  const { isAuthenticated, isLoading } = useConvexAuth();
   const scrolled = useScrollTop();
   const ThemeIcon = useColorModeValue(SunIcon, MoonIcon);
+  const buttonBg = useColorModeValue("gray.800", "gray.50");
+  const buttonHoverBg = useColorModeValue("gray.700", "gray.300");
   const { toggleColorMode } = useColorMode();
 
   return (
@@ -42,15 +47,33 @@ export const Navbar = () => {
         rowGap={2}
       >
         <HStack spacing={2} align="center">
+          {!isAuthenticated && !isLoading && (
+            <>
+              <SignInButton mode="modal">
+                <Button variant="ghost" colorScheme="gray" fontSize="md">
+                  Login
+                </Button>
+              </SignInButton>
+              <SignInButton mode="modal">
+                <Button
+                  variant="solid"
+                  bg={buttonBg}
+                  _hover={{
+                    bg: buttonHoverBg,
+                  }}
+                  fontSize="md"
+                >
+                  Get Jotion free
+                </Button>
+              </SignInButton>
+            </>
+          )}
           <IconButton
             variant="tertiary"
             aria-label="Toggle color mode"
             icon={<Icon as={ThemeIcon} />}
             onClick={toggleColorMode}
           />
-          <Button variant="secondary" fontSize="md">
-            Login
-          </Button>
         </HStack>
       </Flex>
     </Flex>

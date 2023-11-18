@@ -1,6 +1,6 @@
 "use client";
 import { Header } from "./_components/heading";
-import { Box, Flex, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Heroes from "./_components/heroes";
 import Footer from "./_components/footer";
 

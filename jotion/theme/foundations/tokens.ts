@@ -2,11 +2,11 @@ export default {
   colors: {
     "bg.canvas": {
       default: "gray.25",
-      _dark: "dark.900",
+      _dark: "dark.800",
     },
     "bg.surface": {
       default: "white",
-      _dark: "dark.800",
+      _dark: "dark.700",
     },
     "bg.subtle": {
       default: "dark.50",
