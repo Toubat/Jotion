@@ -1,4 +1,4 @@
-import { theme as proTheme } from "@chakra-ui/pro-theme";
+import { theme as proTheme } from "@/theme";
 import { extendTheme, theme as baseTheme } from "@chakra-ui/react";
 
 export default extendTheme(

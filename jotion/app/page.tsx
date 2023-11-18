@@ -1,11 +1,24 @@
 "use client";
-import { Button, Box } from "@chakra-ui/react";
+import {
+  Button,
+  Box,
+  useColorMode,
+  Tabs,
+  Tab,
+  TabList,
+  Container,
+  Stack,
+  TabIndicator,
+} from "@chakra-ui/react";
+import {} from "@chakra-ui/react";
 
 export default function Home() {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Box>
-      <Button colorScheme="red" m={2}>
-        Delete
+      <Button m={2} variant="primary" onClick={toggleColorMode}>
+        {colorMode}
       </Button>
     </Box>
   );
