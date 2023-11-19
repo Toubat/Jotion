@@ -39,16 +39,16 @@ export default {
     },
 
     "border.default": {
-      default: "dark.200",
-      _dark: "dark.800",
+      default: "gray.200",
+      _dark: "dark.600",
     },
     "border.emphasized": {
-      default: "dark.300",
-      _dark: "dark.700",
+      default: "gray.300",
+      _dark: "gray.700",
     },
     "border.active": {
-      default: "dark.400",
-      _dark: "dark.600",
+      default: "gray.400",
+      _dark: "gray.600",
     },
 
     "bg.accent.default": "brand.600",
