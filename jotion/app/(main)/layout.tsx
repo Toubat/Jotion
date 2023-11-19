@@ -1,8 +1,9 @@
 "use client";
-import { Flex, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Spinner } from "@chakra-ui/react";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import Navigation from "./_components/navigation";
+import UserItem from "./_components/user-item";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -22,7 +23,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Flex h="full" bg="bg.surface">
       <Navigation />
-      <main className="flex-1 h-full overflow-y-auto">{children}</main>
+      <Box className="flex-1 h-full overflow-y-auto">{children}</Box>
     </Flex>
   );
 };

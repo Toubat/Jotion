@@ -351,6 +351,21 @@ const variants = {
       color: "white",
     },
   }),
+
+  inverted: defineStyle({
+    bg: "gray.800",
+    color: "white",
+    _dark: {
+      bg: "gray.50",
+      color: "gray.800",
+    },
+    _hover: {
+      bg: "gray.700",
+      _dark: {
+        bg: "gray.300",
+      },
+    },
+  }),
 };
 
 export default defineStyleConfig({

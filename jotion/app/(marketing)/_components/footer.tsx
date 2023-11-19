@@ -3,7 +3,7 @@ import Logo from "./logo";
 
 const Footer = () => {
   return (
-    <Flex align="center" w="full" p={6} zIndex={50}>
+    <Flex align="center" w="full" p={6} zIndex="docked">
       <Logo />
       <Flex
         ml={{

@@ -21,8 +21,6 @@ export const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const scrolled = useScrollTop();
   const ThemeIcon = useColorModeValue(SunIcon, MoonIcon);
-  const buttonBg = useColorModeValue("gray.800", "gray.50");
-  const buttonHoverBg = useColorModeValue("gray.700", "gray.300");
   const { toggleColorMode } = useColorMode();
 
   return (
@@ -58,14 +56,7 @@ export const Navbar = () => {
                 </Button>
               </SignInButton>
               <SignInButton mode="modal">
-                <Button
-                  variant="solid"
-                  bg={buttonBg}
-                  _hover={{
-                    bg: buttonHoverBg,
-                  }}
-                  size="sm"
-                >
+                <Button variant="inverted" size="sm">
                   Get Jotion free
                 </Button>
               </SignInButton>

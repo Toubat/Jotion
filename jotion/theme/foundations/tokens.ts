@@ -9,7 +9,7 @@ export default {
       _dark: "dark.700",
     },
     "bg.subtle": {
-      default: "gray.100",
+      default: "gray.200",
       _dark: "dark.600",
     },
     "bg.muted": {

@@ -1,11 +1,12 @@
 "use client";
 
+import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
+import classNames from "classnames";
 import { Box, Flex, Icon, IconButton, Text } from "@chakra-ui/react";
 import { ChevronsLeft, MenuIcon } from "lucide-react";
-import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import classNames from "classnames";
 import { useMediaQuery } from "usehooks-ts";
+import UserItem from "./user-item";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -115,7 +116,7 @@ const Navigation = () => {
           className={classNames("opacity-0 group-hover/sidebar:opacity-100 transition", {
             "opacity-100": isMobile,
           })}
-          variant="tertiary"
+          variant="ghost"
           pos="absolute"
           top={2}
           right={3}
@@ -129,7 +130,7 @@ const Navigation = () => {
           onClick={collapse}
         />
         <Flex>
-          <Text>Action items</Text>
+          <UserItem />
         </Flex>
         <Flex mt={4}>
           <Text>Documents</Text>

@@ -6,9 +6,6 @@ import NextLink from "next/link";
 import { SignInButton } from "@clerk/clerk-react";
 
 export const Header = () => {
-  const buttonBg = useColorModeValue("zinc.800", "zinc.100");
-  const buttonHoverBg = useColorModeValue("zinc.700", "zinc.200");
-
   const { isAuthenticated, isLoading } = useConvexAuth();
 
   return (
@@ -35,27 +32,13 @@ export const Header = () => {
         </Flex>
       )}
       {isAuthenticated && !isLoading && (
-        <Button
-          as={NextLink}
-          href="/documents"
-          variant="solid"
-          bg={buttonBg}
-          _hover={{ bg: buttonHoverBg }}
-          color="fg.inverted"
-        >
+        <Button as={NextLink} href="/documents" variant="inverted" color="fg.inverted">
           Enter Jotion <ArrowRight className="h-4 w-4 ml-2" />
         </Button>
       )}
       {!isAuthenticated && !isLoading && (
         <SignInButton mode="modal">
-          <Button
-            variant="solid"
-            bg={buttonBg}
-            _hover={{ bg: buttonHoverBg }}
-            color="fg.inverted"
-            colorScheme="gray"
-            fontSize="md"
-          >
+          <Button variant="inverted" color="fg.inverted" colorScheme="gray" fontSize="md">
             Get Jotion free
             <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
