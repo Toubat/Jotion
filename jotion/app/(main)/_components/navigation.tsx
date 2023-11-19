@@ -2,7 +2,7 @@
 
 import { Box, Flex, Icon, IconButton, Text } from "@chakra-ui/react";
 import { ChevronsLeft, MenuIcon } from "lucide-react";
-import { ElementRef, useCallback, useRef, useState } from "react";
+import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { useMediaQuery } from "usehooks-ts";
@@ -16,6 +16,20 @@ const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+
+  useEffect(() => {
+    if (isMobile) {
+      collapse();
+    } else {
+      resetWidth();
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile) {
+      collapse();
+    }
+  }, [pathname, isMobile]);
 
   const handleMouseMove = useCallback((event: MouseEvent) => {
     if (!isResizingRef.current) return;
@@ -92,8 +106,7 @@ const Navigation = () => {
         w={isMobile ? 0 : 60}
         as="aside"
         h="full"
-        // bg="bg.canvas"
-        bg="red.500"
+        bg="bg.canvas"
         overflowY="auto"
         pos="relative"
         flexDir="column"
@@ -103,7 +116,6 @@ const Navigation = () => {
             "opacity-100": isMobile,
           })}
           variant="tertiary"
-          colorScheme="dark"
           pos="absolute"
           top={2}
           right={3}
@@ -143,13 +155,15 @@ const Navigation = () => {
         ref={navbarRef}
         pos="absolute"
         top={0}
-        bg="blue.500"
       >
         <Box bg="transparent" px={3} py={2} w="full">
           {isCollapsed && (
             <IconButton
               variant="tertiary"
-              colorScheme="dark"
+              color="fg.muted"
+              _hover={{
+                bg: "bg.subtle",
+              }}
               aria-label="Menu toggle"
               size="sm"
               icon={<Icon as={MenuIcon} />}
