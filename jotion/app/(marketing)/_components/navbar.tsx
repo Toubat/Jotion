@@ -2,18 +2,20 @@
 
 import { useConvexAuth } from "convex/react";
 import { useScrollTop } from "@/hooks/use-scroll-top";
-import { SignInButton } from "@clerk/clerk-react";
+import { SignInButton, UserButton } from "@clerk/clerk-react";
 import {
   Button,
   Flex,
   HStack,
   Icon,
   IconButton,
+  Spinner,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "lucide-react";
 import Logo from "./logo";
+import NextLink from "next/link";
 
 export const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -47,6 +49,7 @@ export const Navbar = () => {
         rowGap={2}
       >
         <HStack spacing={2} align="center">
+          {isLoading && <Spinner size="sm" />}
           {!isAuthenticated && !isLoading && (
             <>
               <SignInButton mode="modal">
@@ -61,11 +64,25 @@ export const Navbar = () => {
                   _hover={{
                     bg: buttonHoverBg,
                   }}
-                  fontSize="md"
+                  size="sm"
                 >
                   Get Jotion free
                 </Button>
               </SignInButton>
+            </>
+          )}
+          {isAuthenticated && !isLoading && (
+            <>
+              <Button
+                as={NextLink}
+                href="/documents"
+                variant="tertiary"
+                colorScheme="dark"
+                size="sm"
+              >
+                Enter Jotion
+              </Button>
+              <UserButton afterSignOutUrl="/" />
             </>
           )}
           <IconButton

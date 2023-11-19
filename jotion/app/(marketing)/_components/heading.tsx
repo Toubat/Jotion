@@ -1,11 +1,15 @@
 "use client";
-import { Box, Button, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
+import { useConvexAuth } from "convex/react";
 import { ArrowRight } from "lucide-react";
+import NextLink from "next/link";
+import { SignInButton } from "@clerk/clerk-react";
 
 export const Header = () => {
   const buttonBg = useColorModeValue("zinc.800", "zinc.100");
   const buttonHoverBg = useColorModeValue("zinc.700", "zinc.200");
-  const buttonText = useColorModeValue("white", "zinc.800");
+
+  const { isAuthenticated, isLoading } = useConvexAuth();
 
   return (
     <Box className="space-y-4" maxW="3xl">
@@ -25,9 +29,38 @@ export const Header = () => {
       >
         Jotion is the connected work space where <br /> better faster work happens
       </Heading>
-      <Button variant="solid" bg={buttonBg} _hover={{ bg: buttonHoverBg }} color="fg.inverted">
-        Enter Jotion <ArrowRight className="h-4 w-4 ml-2" />
-      </Button>
+      {isLoading && (
+        <Flex align="center" justify="center" w="full">
+          <Spinner size="lg" />
+        </Flex>
+      )}
+      {isAuthenticated && !isLoading && (
+        <Button
+          as={NextLink}
+          href="/documents"
+          variant="solid"
+          bg={buttonBg}
+          _hover={{ bg: buttonHoverBg }}
+          color="fg.inverted"
+        >
+          Enter Jotion <ArrowRight className="h-4 w-4 ml-2" />
+        </Button>
+      )}
+      {!isAuthenticated && !isLoading && (
+        <SignInButton mode="modal">
+          <Button
+            variant="solid"
+            bg={buttonBg}
+            _hover={{ bg: buttonHoverBg }}
+            color="fg.inverted"
+            colorScheme="gray"
+            fontSize="md"
+          >
+            Get Jotion free
+            <ArrowRight className="h-4 w-4 ml-2" />
+          </Button>
+        </SignInButton>
+      )}
     </Box>
   );
 };
