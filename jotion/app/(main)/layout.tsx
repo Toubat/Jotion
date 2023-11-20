@@ -3,7 +3,6 @@ import { Box, Flex, Spinner } from "@chakra-ui/react";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import Navigation from "./_components/navigation";
-import UserItem from "./_components/user-item";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();

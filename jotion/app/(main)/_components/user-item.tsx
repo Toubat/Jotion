@@ -45,8 +45,8 @@ const UserItem = () => {
         </Flex>
       </MenuButton>
       <Portal>
-        <MenuList zIndex="popover" p={2} bg="bg.surface" w={80} ml={4}>
-          <Flex flexDir="column" rowGap={3}>
+        <MenuList zIndex="popover" p={1.5} bg="bg.surface" w={80} ml={4}>
+          <Flex flexDir="column" rowGap={3} p={0.5}>
             <Text className="leading-one" fontSize="xs" fontWeight="medium" color="fg.muted">
               {user?.emailAddresses[0].emailAddress}
             </Text>
@@ -59,7 +59,7 @@ const UserItem = () => {
               </Text>
             </Flex>
           </Flex>
-          <MenuDivider />
+          <MenuDivider my={1.5} />
           <SignOutButton>
             <MenuItem
               rounded="md"

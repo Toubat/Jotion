@@ -2,15 +2,21 @@
 
 import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import { Box, Flex, Icon, IconButton, Text } from "@chakra-ui/react";
-import { ChevronsLeft, MenuIcon } from "lucide-react";
+import { Box, Flex, HStack, Icon, IconButton, Text, VStack, useToast } from "@chakra-ui/react";
+import { ChevronsLeft, MenuIcon, PlusCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import UserItem from "./user-item";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import Item from "./item";
 
 const Navigation = () => {
+  const toast = useToast();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const documents = useQuery(api.documents.get);
+  const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -97,6 +103,25 @@ const Navigation = () => {
     }
   };
 
+  const handleCreate = () => {
+    const promise = create({ title: "Untitled" });
+
+    toast.promise(promise, {
+      loading: {
+        title: "Note Create",
+        description: "Creating a new note...",
+      },
+      success: {
+        title: "Note Create Success",
+        description: "Your note has been created.",
+      },
+      error: {
+        title: "Note Create Failed",
+        description: "Something went wrong while creating your note.",
+      },
+    });
+  };
+
   return (
     <>
       <Flex
@@ -129,11 +154,16 @@ const Navigation = () => {
           }}
           onClick={collapse}
         />
-        <Flex>
+        <VStack>
           <UserItem />
-        </Flex>
+          <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
+        </VStack>
         <Flex mt={4}>
-          <Text>Documents</Text>
+          <Text>
+            {documents?.map((document) => (
+              <p key={document._id}>{document.title}</p>
+            ))}
+          </Text>
         </Flex>
         <Flex
           className="opacity-0 group-hover/sidebar:opacity-100 transition"
