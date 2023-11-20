@@ -64,7 +64,7 @@ const DocumentList = ({ parentDocumentId, level = 0 }: DocumentListProps) => {
       {documents.map((document) => (
         <Box key={document._id}>
           <Item
-            id={document._id}
+            documentId={document._id}
             onClick={() => onRedirect(document._id)}
             label={document.title}
             icon={FileIcon}

@@ -2,8 +2,22 @@
 
 import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import { Box, Flex, HStack, Icon, IconButton, Text, VStack, useToast } from "@chakra-ui/react";
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  IconButton,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Portal,
+  Text,
+  VStack,
+  useToast,
+} from "@chakra-ui/react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import UserItem from "./user-item";
@@ -162,6 +176,15 @@ const Navigation = () => {
         </VStack>
         <Box mt={2}>
           <DocumentList />
+          <Item label="Add a page" onClick={handleCreate} icon={Plus} />
+          <Popover placement={isMobile ? "bottom" : "right"}>
+            <PopoverTrigger>
+              <Item label="Trash" icon={Trash} />
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent>Trash box</PopoverContent>
+            </Portal>
+          </Popover>
         </Box>
         <Flex
           className="opacity-0 group-hover/sidebar:opacity-100 transition"

@@ -25,7 +25,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/clerk-react";
 
 interface ItemProps {
-  id?: Id<"documents">;
+  documentId?: Id<"documents">;
   icon: LucideIcon;
   label: string;
   documentIcon?: string;
@@ -59,7 +59,7 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
       children,
       label,
       icon: LucideIcon,
-      id,
+      documentId: id,
       documentIcon,
       active,
       expanded,
