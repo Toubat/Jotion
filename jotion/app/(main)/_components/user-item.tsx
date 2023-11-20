@@ -29,7 +29,7 @@ const UserItem = () => {
         <Flex align="center">
           <HStack align="center" spacing={2} maxW={150}>
             <Avatar h={5} w={5} src={user?.imageUrl} />
-            <Text textAlign="start" fontWeight="medium" noOfLines={1} color="fg.muted">
+            <Text textAlign="start" fontWeight="semibold" noOfLines={1} color="fg.muted">
               {user?.firstName}&apos;s Jotion
             </Text>
           </HStack>

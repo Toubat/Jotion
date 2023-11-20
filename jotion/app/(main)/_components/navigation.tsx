@@ -3,7 +3,7 @@
 import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { Box, Flex, HStack, Icon, IconButton, Text, VStack, useToast } from "@chakra-ui/react";
-import { ChevronsLeft, MenuIcon, PlusCircle } from "lucide-react";
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import UserItem from "./user-item";
@@ -154,9 +154,11 @@ const Navigation = () => {
           }}
           onClick={collapse}
         />
-        <VStack>
+        <VStack spacing={0}>
           <UserItem />
-          <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
+          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item label="New page" onClick={handleCreate} icon={PlusCircle} />
         </VStack>
         <Flex mt={4}>
           <Text>

@@ -18,24 +18,24 @@ export default {
     },
 
     "fg.default": {
-      default: "dark.800",
+      default: "gray.800",
       _dark: "white",
     },
     "fg.emphasized": {
-      default: "dark.700",
-      _dark: "dark.50",
+      default: "gray.700",
+      _dark: "gray.50",
     },
     "fg.muted": {
-      default: "dark.600",
-      _dark: "dark.100",
+      default: "gray.700",
+      _dark: "gray.100",
     },
     "fg.subtle": {
-      default: "dark.500",
-      _dark: "dark.300",
+      default: "gray.500",
+      _dark: "gray.300",
     },
     "fg.inverted": {
       default: "white",
-      _dark: "dark.900",
+      _dark: "gray.900",
     },
 
     "border.default": {
