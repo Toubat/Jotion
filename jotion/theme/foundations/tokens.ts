@@ -27,7 +27,7 @@ export default {
     },
     "fg.muted": {
       default: "gray.700",
-      _dark: "gray.100",
+      _dark: "gray.500",
     },
     "fg.subtle": {
       default: "gray.500",

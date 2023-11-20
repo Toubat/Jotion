@@ -46,6 +46,9 @@ const DocumentPage = () => {
 
   return (
     <Flex h="full" flexDir="column" align="center" justify="center">
+      <Button variant="tertiary" onClick={toggleColorMode}>
+        Toggle
+      </Button>
       <ChakraNextImage
         as={NextImage}
         className="object-contain"
