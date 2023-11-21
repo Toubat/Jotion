@@ -162,8 +162,8 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
             _hover={{
               bg: iconButtonHoverBg,
             }}
-            h={4}
-            w={4}
+            h={5}
+            w={5}
           >
             <ChevronIcon className="h-3 w-3" />
           </Flex>
@@ -208,7 +208,7 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
                   e.stopPropagation();
                 }}
               >
-                <Flex h={4} w={4} justify="center" align="center">
+                <Flex h={5} w={5} justify="center" align="center">
                   <Icon as={MoreHorizontal} />
                 </Flex>
               </MenuButton>
@@ -242,8 +242,8 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
             </Menu>
             <Flex
               className="opacity-0 group-hover:opacity-100 transition-all ease-in-out duration-300"
-              h={4}
-              w={4}
+              h={5}
+              w={5}
               rounded="sm"
               justify="center"
               align="center"

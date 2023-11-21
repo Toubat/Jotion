@@ -6,6 +6,8 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyleContent = defineStyle({
   bg: "bg.surface",
   overflow: "hidden",
+  p: 2,
+  boxShadow: "sm !important",
 });
 
 const baseStyle = definePartsStyle({

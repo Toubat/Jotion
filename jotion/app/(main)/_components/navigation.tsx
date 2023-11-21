@@ -4,16 +4,13 @@ import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import {
   Box,
-  Button,
   Flex,
-  HStack,
   Icon,
   IconButton,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Portal,
-  Text,
   VStack,
   useToast,
 } from "@chakra-ui/react";
@@ -25,6 +22,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import DocumentList from "./document-list";
+import TrashBox from "./trash-box";
 
 const Navigation = () => {
   const toast = useToast();
@@ -37,6 +35,7 @@ const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const [isCloseOnBlur, setIsCloseOnBlur] = useState(true);
 
   useEffect(() => {
     if (isMobile) {
@@ -135,7 +134,7 @@ const Navigation = () => {
       },
     });
   };
-
+  console.log(isCloseOnBlur);
   return (
     <>
       <Flex
@@ -177,12 +176,17 @@ const Navigation = () => {
         <Box mt={2}>
           <DocumentList />
           <Item label="Add a page" onClick={handleCreate} icon={Plus} />
-          <Popover placement={isMobile ? "bottom" : "right"}>
+          <Popover placement={isMobile ? "bottom" : "right"} closeOnBlur={isCloseOnBlur}>
             <PopoverTrigger>
               <Item label="Trash" icon={Trash} />
             </PopoverTrigger>
             <Portal>
-              <PopoverContent>Trash box</PopoverContent>
+              <PopoverContent>
+                <TrashBox
+                  onModalOpen={() => setIsCloseOnBlur(false)}
+                  onModalClose={() => setIsCloseOnBlur(true)}
+                />
+              </PopoverContent>
             </Portal>
           </Popover>
         </Box>

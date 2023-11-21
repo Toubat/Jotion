@@ -355,8 +355,12 @@ const variants = {
   inverted: defineStyle({
     bg: "gray.800",
     color: "white",
+    borderWidth: "1px",
+    borderColor: "border.emphasized",
+    borderRadius: "lg",
+    flexShrink: 0,
     _dark: {
-      bg: "gray.50",
+      bg: "white",
       color: "gray.800",
     },
     _hover: {
