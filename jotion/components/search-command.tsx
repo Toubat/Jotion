@@ -34,6 +34,7 @@ const SearchCommand = () => {
   const [search, setSearch] = useState("");
   const [isMounted, setIsMounted] = useState(false);
   const { isOpen, toggle, onClose } = useSearch((store) => store);
+  const [selected, setSelected] = useState();
 
   const filteredDocuments = useMemo(() => {
     return documents?.filter((document) => {
@@ -67,7 +68,7 @@ const SearchCommand = () => {
   };
 
   if (!isMounted) return null;
-  console.log(hasResult);
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay className="backdrop-blur-sm" />
