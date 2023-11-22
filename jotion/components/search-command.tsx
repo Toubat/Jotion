@@ -1,6 +1,7 @@
 "use client";
 
-import { KeyboardEvent, useEffect, useState } from "react";
+import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import { X, File, Search } from "lucide-react";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
@@ -30,8 +31,19 @@ const SearchCommand = () => {
   const router = useRouter();
   const documents = useQuery(api.documents.getSearch);
 
+  const [search, setSearch] = useState("");
   const [isMounted, setIsMounted] = useState(false);
   const { isOpen, toggle, onClose } = useSearch((store) => store);
+
+  const filteredDocuments = useMemo(() => {
+    return documents?.filter((document) => {
+      return document.title.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [documents, search]);
+
+  const hasResult = useMemo(() => {
+    return filteredDocuments && filteredDocuments.length > 0;
+  }, [filteredDocuments]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -55,12 +67,12 @@ const SearchCommand = () => {
   };
 
   if (!isMounted) return null;
-
+  console.log(hasResult);
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
-      <ModalOverlay />
+      <ModalOverlay className="backdrop-blur-sm" />
       <ModalContent bg="bg.surface" border="1px" minW="700" borderColor="border.default">
-        <Box>
+        <Box p={1}>
           <InputGroup>
             <InputLeftElement>
               <Icon as={Search} h={4} w={4} />
@@ -69,6 +81,8 @@ const SearchCommand = () => {
               variant="unstyled"
               placeholder={`Search ${user?.fullName}'s Jotion...`}
               fontSize="sm"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <InputRightElement>
               <IconButton
@@ -78,6 +92,7 @@ const SearchCommand = () => {
                 icon={<Icon as={X} />}
                 color="fg.muted"
                 size="xs"
+                onClick={toggle}
               />
             </InputRightElement>
           </InputGroup>
@@ -87,37 +102,42 @@ const SearchCommand = () => {
           <Text color="fg.muted" fontSize="xs" fontWeight="medium" ml={1}>
             Documents
           </Text>
-          <VStack mt={1}>
-            {documents?.map((document) => (
-              <Flex
-                as="button"
-                className="transition-all ease-in-out duration-200"
-                key={document._id}
-                // onClick={() => onSelect(document._id)}
-                justify="start"
-                align="center"
-                w="full"
-                p={2}
-                py={1.5}
-                rounded="4"
-                _hover={{
-                  bg: "bg.subtle",
-                }}
-              >
-                {document.icon ? (
-                  <Text mr={2} size="sm">
-                    {document.icon}
-                  </Text>
-                ) : (
-                  <Icon as={File} mr={2} h={4} w={4} />
-                )}
-                <Text as="span" fontSize="sm">
-                  {document.title}
-                </Text>
-              </Flex>
-            ))}
-          </VStack>
         </Box>
+        <VStack mt={1} p={2}>
+          {!hasResult && (
+            <Flex pb={8} pt={4} justify="center" align="center" color="fg.muted">
+              <Text>No results found.</Text>
+            </Flex>
+          )}
+          {filteredDocuments?.map((document) => (
+            <Flex
+              as="button"
+              className="transition-all ease-in-out duration-200"
+              key={document._id}
+              onClick={() => onSelect(document._id)}
+              justify="start"
+              align="center"
+              w="full"
+              p={2}
+              py={1.5}
+              rounded="4"
+              _hover={{
+                bg: "bg.subtle",
+              }}
+            >
+              {document.icon ? (
+                <Text mr={2} size="sm">
+                  {document.icon}
+                </Text>
+              ) : (
+                <Icon as={File} mr={2} h={4} w={4} />
+              )}
+              <Text as="span" fontSize="sm">
+                {document.title}
+              </Text>
+            </Flex>
+          ))}
+        </VStack>
       </ModalContent>
     </Modal>
   );

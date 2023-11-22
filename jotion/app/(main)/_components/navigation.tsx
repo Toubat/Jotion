@@ -23,6 +23,7 @@ import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import DocumentList from "./document-list";
 import TrashBox from "./trash-box";
+import { useSearch } from "@/hooks/use-search";
 
 const Navigation = () => {
   const toast = useToast();
@@ -35,6 +36,7 @@ const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const { isOpen, onOpen, onClose } = useSearch((store) => store);
 
   useEffect(() => {
     if (isMobile) {
@@ -168,9 +170,9 @@ const Navigation = () => {
         />
         <VStack spacing={0}>
           <UserItem />
-          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={onOpen} />
           <Item label="Settings" icon={Settings} onClick={() => {}} />
-          <Item label="New page" onClick={handleCreate} icon={PlusCircle} />
+          <Item label="New page" icon={PlusCircle} onClick={handleCreate} />
         </VStack>
         <Box mt={2}>
           <DocumentList />
