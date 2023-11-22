@@ -24,6 +24,7 @@ import { Item } from "./item";
 import DocumentList from "./document-list";
 import TrashBox from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 const Navigation = () => {
   const toast = useToast();
@@ -36,7 +37,8 @@ const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
-  const { isOpen, onOpen, onClose } = useSearch((store) => store);
+  const onSearchOpen = useSearch((store) => store.onOpen);
+  const onSettingsOpen = useSettings((store) => store.onOpen);
 
   useEffect(() => {
     if (isMobile) {
@@ -170,8 +172,8 @@ const Navigation = () => {
         />
         <VStack spacing={0}>
           <UserItem />
-          <Item label="Search" icon={Search} isSearch onClick={onOpen} />
-          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={onSearchOpen} />
+          <Item label="Settings" icon={Settings} onClick={onSettingsOpen} />
           <Item label="New page" icon={PlusCircle} onClick={handleCreate} />
         </VStack>
         <Box mt={2}>
