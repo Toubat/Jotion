@@ -23,13 +23,7 @@ import { SearchIcon, TrashIcon, UndoIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
-const TrashBox = ({
-  onModalOpen,
-  onModalClose,
-}: {
-  onModalOpen: () => void;
-  onModalClose: () => void;
-}) => {
+const TrashBox = () => {
   const router = useRouter();
   const params = useParams();
   const toast = useToast();
@@ -156,11 +150,7 @@ const TrashBox = ({
                 >
                   <Icon as={UndoIcon} mb={1} size="sm" />
                 </Box>
-                <ConfirmModal
-                  onModalOpen={onModalOpen}
-                  onModalClose={onModalClose}
-                  onConfirm={() => onRemove(document._id)}
-                >
+                <ConfirmModal onConfirm={() => onRemove(document._id)}>
                   <Box
                     className="transition-all ease-in-out duration-300"
                     as="button"

@@ -24,7 +24,8 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "usehooks-ts": "^2.9.1"
+    "usehooks-ts": "^2.9.1",
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.4.1",

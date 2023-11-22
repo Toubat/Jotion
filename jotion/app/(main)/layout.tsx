@@ -3,6 +3,7 @@ import { Box, Flex, Spinner } from "@chakra-ui/react";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import Navigation from "./_components/navigation";
+import SearchCommand from "@/components/search-command";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -22,7 +23,10 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Flex h="full" bg="bg.surface">
       <Navigation />
-      <Box className="flex-1 h-full overflow-y-auto">{children}</Box>
+      <Box className="flex-1 h-full overflow-y-auto">
+        <SearchCommand />
+        {children}
+      </Box>
     </Flex>
   );
 };

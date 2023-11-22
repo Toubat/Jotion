@@ -37,20 +37,18 @@ interface ItemProps {
 }
 
 export const ItemSkeleton = ({ level }: { level: number }) => (
-  <Flex
+  <HStack
     className="transition-all ease-in-out duration-300"
     pl={level ? `${level * 0.75 + 0.75}rem` : "0.75rem"}
+    w="full"
     py={1}
     pr={3}
-    w="full"
-    minH={27}
     fontSize="sm"
-    align="center"
-    color="fg.muted"
     cursor="pointer"
   >
-    <Skeleton />
-  </Flex>
+    <Skeleton h="20px" w="20px" />
+    <Skeleton h="20px" w="full" />
+  </HStack>
 );
 
 export const Item = forwardRef<FlexProps & ItemProps, "div">(
