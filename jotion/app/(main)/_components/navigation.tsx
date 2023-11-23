@@ -15,7 +15,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import UserItem from "./user-item";
 import { useMutation } from "convex/react";
@@ -25,10 +25,12 @@ import DocumentList from "./document-list";
 import TrashBox from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
+import Navbar from "./navbar";
 
 const Navigation = () => {
   const toast = useToast();
   const pathname = usePathname();
+  const params = useParams();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const create = useMutation(api.documents.create);
 
@@ -211,22 +213,27 @@ const Navigation = () => {
         ref={navbarRef}
         pos="absolute"
         top={0}
+        h={12}
       >
-        <Box bg="transparent" px={3} py={2} w="full">
-          {isCollapsed && (
-            <IconButton
-              variant="tertiary"
-              color="fg.muted"
-              _hover={{
-                bg: "bg.subtle",
-              }}
-              aria-label="Menu toggle"
-              size="sm"
-              icon={<Icon as={MenuIcon} />}
-              onClick={resetWidth}
-            />
-          )}
-        </Box>
+        {!!params.documentId ? (
+          <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
+        ) : (
+          <Box bg="transparent" px={3} py={2} w="full">
+            {isCollapsed && (
+              <IconButton
+                variant="tertiary"
+                color="fg.muted"
+                _hover={{
+                  bg: "bg.subtle",
+                }}
+                aria-label="Menu toggle"
+                size="sm"
+                icon={<Icon as={MenuIcon} />}
+                onClick={resetWidth}
+              />
+            )}
+          </Box>
+        )}
       </Box>
     </>
   );
