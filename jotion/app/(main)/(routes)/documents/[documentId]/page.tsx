@@ -1,9 +1,10 @@
 "use client";
 import { useQuery } from "convex/react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Skeleton, VStack } from "@chakra-ui/react";
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import Toolbar from "@/components/toolbar";
+import Cover from "@/components/cover";
 
 interface DocumentIdPageProps {
   params: {
@@ -17,7 +18,19 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   });
 
   if (document === undefined) {
-    return <p>Loading...</p>;
+    return (
+      <Box>
+        <Skeleton h="30vh" w="full" m={3} />
+        <Flex mx="auto" w="full" mt={8}>
+          <VStack px={10} spacing={4} w="full" align="start">
+            <Skeleton h={14} className="w-[50%]" />
+            <Skeleton h={4} className="w-[80%]" />
+            <Skeleton h={4} className="w-[40%]" />
+            <Skeleton h={4} className="w-[60%]" />
+          </VStack>
+        </Flex>
+      </Box>
+    );
   }
 
   if (document === null) {
@@ -26,7 +39,7 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
 
   return (
     <Box>
-      <Box h={12} />
+      <Cover url={document.coverImage} />
       <Flex mx="auto" w="full">
         <Toolbar initialData={document} />
       </Flex>

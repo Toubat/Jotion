@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ConvexClientProvider } from "@/components/convex-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { EdgeStoreProvider } from "@/libs/edgestore";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,9 +27,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <ConvexClientProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </ConvexClientProvider>
+        <EdgeStoreProvider>
+          <ConvexClientProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </ConvexClientProvider>
+        </EdgeStoreProvider>
       </body>
     </html>
   );

@@ -214,6 +214,7 @@ const Navigation = () => {
         pos="absolute"
         top={0}
         h={12}
+        zIndex={1}
       >
         {!!params.documentId ? (
           <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />

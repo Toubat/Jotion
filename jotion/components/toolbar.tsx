@@ -17,6 +17,7 @@ import { ImageIcon, Smile, X } from "lucide-react";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { useCoverImage } from "@/hooks/use-cover-image";
 
 interface ToolbarProps {
   initialData: Doc<"documents">;
@@ -27,6 +28,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ initialData, preview }) => {
   const update = useMutation(api.documents.update);
   const removeIcon = useMutation(api.documents.removeIcon);
   const [value, setValue] = useState(initialData.title);
+  const coverImage = useCoverImage();
 
   useEffect(() => {
     setValue(initialData.title);
@@ -58,7 +60,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ initialData, preview }) => {
   return (
     <Box className="group" pos="relative" px={10}>
       {!!initialData.icon && !preview && (
-        <Flex className="group/icon" align="center" columnGap={2}>
+        <Flex className="group/icon" align="center" columnGap={2} mt={8}>
           <IconPicker onChange={onIconSelect}>
             <Text
               className="transition"
@@ -83,27 +85,27 @@ const Toolbar: React.FC<ToolbarProps> = ({ initialData, preview }) => {
         </Flex>
       )}
       {!!initialData.icon && preview && (
-        <Flex className="group/icon" align="center" columnGap={2}>
+        <Flex className="group/icon" align="center" columnGap={2} mt={8}>
           <Text className="transition" fontSize="4xl">
             {initialData.icon}
           </Text>
         </Flex>
       )}
-      <Flex className="opacity-0 group-hover:opacity-100" align="center" columnGap={1} mt={2}>
+      <Flex className="opacity-0 group-hover:opacity-100" align="center" columnGap={1}>
         {!initialData.icon && !preview && (
           <IconPicker onChange={onIconSelect}>
-            <Button size="xs" variant="secondary" color="fg.muted">
+            <Button size="xs" variant="secondary" color="fg.muted" mt={4}>
               <Icon as={Smile} h={4} w={4} mr={2} /> Add icon
             </Button>
           </IconPicker>
         )}
         {!initialData.coverImage && !preview && (
-          <Button size="xs" variant="secondary" color="fg.muted">
+          <Button size="xs" variant="secondary" color="fg.muted" onClick={coverImage.onOpen} mt={4}>
             <Icon as={ImageIcon} h={4} w={4} mr={2} /> Add cover
           </Button>
         )}
       </Flex>
-      <Editable value={value} onChange={onChange} fontSize="4xl" fontWeight="bold" mt={2}>
+      <Editable value={value} onChange={onChange} fontSize="5xl" fontWeight="bold" mt={2}>
         <EditablePreview noOfLines={1} />
         <EditableInput
           isTruncated

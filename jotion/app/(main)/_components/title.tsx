@@ -32,7 +32,7 @@ const Title = ({ initialData }: TitleProps) => {
           {initialData.icon}
         </Text>
       )}
-      <Editable value={value} w="60" onChange={onChange} fontWeight="medium">
+      <Editable value={value} w="60" onChange={onChange} fontWeight="medium" pl={1}>
         <EditablePreview
           px={1}
           _hover={{

@@ -15,6 +15,8 @@
     "@chakra-ui/pro-theme": "^0.10.0",
     "@chakra-ui/react": "^2.8.2",
     "@clerk/clerk-react": "^4.28.0",
+    "@edgestore/react": "^0.1.4",
+    "@edgestore/server": "^0.1.4",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "classnames": "^2.3.2",
@@ -25,8 +27,11 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-dropzone": "^14.2.3",
     "react-textarea-autosize": "^8.5.3",
+    "tailwind-merge": "^2.0.0",
     "usehooks-ts": "^2.9.1",
+    "zod": "^3.22.4",
     "zustand": "^4.4.6"
   },
   "devDependencies": {

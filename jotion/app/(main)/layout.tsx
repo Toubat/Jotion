@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import Navigation from "./_components/navigation";
 import SearchCommand from "@/components/search-command";
 import SettingsModal from "@/components/modals/settings-modal";
+import CoverImageModal from "@/components/modals/cover-image-modal";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -27,6 +28,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <Box className="flex-1 h-full overflow-y-auto">
         <SearchCommand />
         <SettingsModal />
+        <CoverImageModal />
         {children}
       </Box>
     </Flex>
