@@ -167,7 +167,7 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
           </Flex>
         )}
         {documentIcon ? (
-          <Box flexShrink={0} mr={2} fontSize="sm" color="fg.muted" fontWeight="medium">
+          <Box flexShrink={0} mr={2} fontSize="md" color="fg.muted" fontWeight="medium">
             {documentIcon}
           </Box>
         ) : (

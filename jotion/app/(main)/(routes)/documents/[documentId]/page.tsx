@@ -27,14 +27,7 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   return (
     <Box>
       <Box h={12} />
-      <Flex
-        maxW={{
-          md: "container.3xl",
-          lg: "container.4xl",
-        }}
-        mx="auto"
-        bg="bg.subtle"
-      >
+      <Flex mx="auto" w="full">
         <Toolbar initialData={document} />
       </Flex>
     </Box>
