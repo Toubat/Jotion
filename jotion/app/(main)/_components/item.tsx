@@ -89,7 +89,7 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
+        router.push(`/documents/${documentId}`);
       });
 
       toast.promise(promise, {
@@ -112,7 +112,10 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
       event.stopPropagation();
       if (!id) return;
 
-      const promise = archive({ id });
+      const promise = archive({ id }).then(() => {
+        router.push(`/documents`);
+      });
+
       toast.promise(promise, {
         loading: {
           title: "Note Delete",
@@ -163,15 +166,31 @@ export const Item = forwardRef<FlexProps & ItemProps, "div">(
             h={5}
             w={5}
           >
-            <ChevronIcon className="h-3 w-3" />
+            <ChevronIcon className="h-4 w-4" />
           </Flex>
         )}
         {documentIcon ? (
-          <Box flexShrink={0} mr={2} fontSize="md" color="fg.muted" fontWeight="medium">
+          <Box
+            flexShrink={0}
+            mr={1.5}
+            h={5}
+            w={5}
+            fontSize="md"
+            color="fg.muted"
+            fontWeight="medium"
+          >
             {documentIcon}
           </Box>
         ) : (
-          <Icon as={LucideIcon} flexShrink={0} h={18} mr={2} color="fg.muted" fontWeight="medium" />
+          <Icon
+            as={LucideIcon}
+            flexShrink={0}
+            h={18}
+            w={18}
+            mr={2}
+            color="fg.muted"
+            fontWeight="medium"
+          />
         )}
         <Box isTruncated color="fg.muted" fontWeight="medium">
           {label}

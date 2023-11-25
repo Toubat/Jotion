@@ -8,13 +8,13 @@ import Cover from "@/components/cover";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
 
-interface DocumentIdPageProps {
+interface PreviewPageProps {
   params: {
     documentId: Id<"documents">;
   };
 }
 
-const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
+const PreviewPage = ({ params }: PreviewPageProps) => {
   const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
@@ -49,14 +49,14 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   }
 
   return (
-    <Box>
-      <Cover url={document.coverImage} />
+    <Box bg="bg.surface">
+      <Cover preview url={document.coverImage} />
       <Flex mx="auto" w="6xl" flexDir="column">
-        <Toolbar initialData={document} />
-        <Editor onChange={onChange} initialContent={document.content} />
+        <Toolbar preview initialData={document} />
+        <Editor editable={false} onChange={onChange} initialContent={document.content} />
       </Flex>
     </Box>
   );
 };
 
-export default DocumentIdPage;
+export default PreviewPage;

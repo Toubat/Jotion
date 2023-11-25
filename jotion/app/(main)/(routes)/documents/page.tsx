@@ -14,10 +14,11 @@ import { useUser } from "@clerk/clerk-react";
 import { PlusCircle } from "lucide-react";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { useRouter } from "next/navigation";
 
 const DocumentPage = () => {
   const { user } = useUser();
-  const { toggleColorMode } = useColorMode();
+  const router = useRouter();
   const toast = useToast();
 
   const emptyImageUrl = useColorModeValue("/empty.png", "/empty-dark.png");
@@ -26,6 +27,8 @@ const DocumentPage = () => {
   const onCreate = () => {
     const promose = create({
       title: "Untitled",
+    }).then((documentId) => {
+      router.push(`/documents/${documentId}`);
     });
 
     toast.promise(promose, {
@@ -46,9 +49,6 @@ const DocumentPage = () => {
 
   return (
     <Flex h="full" flexDir="column" align="center" justify="center">
-      <Button variant="tertiary" onClick={toggleColorMode}>
-        Toggle
-      </Button>
       <ChakraNextImage
         as={NextImage}
         className="object-contain"

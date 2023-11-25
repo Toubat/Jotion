@@ -11,6 +11,8 @@
     "postinstall": "npm run gen:theme-typings"
   },
   "dependencies": {
+    "@blocknote/core": "^0.9.6",
+    "@blocknote/react": "^0.9.6",
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/pro-theme": "^0.10.0",
     "@chakra-ui/react": "^2.8.2",
@@ -23,8 +25,10 @@
     "convex": "^1.5.1",
     "emoji-picker-react": "^4.5.16",
     "framer-motion": "^10.16.5",
+    "install": "^0.13.0",
     "lucide-react": "^0.292.0",
     "next": "14.0.3",
+    "npm": "^10.2.4",
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",

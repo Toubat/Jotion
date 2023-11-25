@@ -58,7 +58,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ initialData, preview }) => {
   };
 
   return (
-    <Box className="group" pos="relative" px={10}>
+    <Box className="group px-[3.25rem]" pos="relative" bg="bg.surface">
       {!!initialData.icon && !preview && (
         <Flex className="group/icon" align="center" columnGap={2} mt={8}>
           <IconPicker onChange={onIconSelect}>
@@ -105,7 +105,15 @@ const Toolbar: React.FC<ToolbarProps> = ({ initialData, preview }) => {
           </Button>
         )}
       </Flex>
-      <Editable value={value} onChange={onChange} fontSize="5xl" fontWeight="bold" mt={2}>
+      <Editable
+        defaultValue={initialData.title}
+        value={value}
+        onChange={onChange}
+        fontSize="5xl"
+        fontWeight="bold"
+        mt={2}
+        isDisabled={preview}
+      >
         <EditablePreview noOfLines={1} />
         <EditableInput
           isTruncated

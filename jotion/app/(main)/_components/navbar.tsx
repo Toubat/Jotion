@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import Title from "./title";
 import Banner from "./banner";
 import ActionMenu from "./action-menu";
+import { Publish } from "./publish";
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -41,7 +42,10 @@ const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
           {document ? <Title initialData={document} /> : <Skeleton h={8} w={60} />}
           <HStack align="center">
             {document ? (
-              <ActionMenu documentId={document._id} />
+              <>
+                <Publish initialData={document} />
+                <ActionMenu documentId={document._id} />
+              </>
             ) : (
               <Skeleton h={8} w={8} rounded="md" />
             )}
